@@ -1,0 +1,55 @@
+
+
+{% extends "main.html" %} 
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %} Exam Timetable {% endblock %}
+
+{% block content %}
+
+
+            <!-- Main Content -->
+            <div id="content">
+              <div class="row"  id="printableContent">
+                <div class="col-lg-12">
+                                          
+                <div class='container-fluid'>
+                  <a href="{% url 'admin-schedule-edit' %}">
+                    <button class="btn btn-danger _btn-link border text-center">
+                      <i class="material-icons">clear</i>
+                    </button>
+                  </a>
+                </div>
+                <div class="container-fluid">
+                  <div class="card card-plain">
+                    <div class="card-header card-header-success">
+                      <h4 class="card-title">Delete Exam Schedule</h4>
+                      <p class="card-category"></p>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 col-xl-8">
+                        <div class="card-body">
+                          <div class="">
+                            <form method="POST" action="" class='mt-3'>
+                              {% csrf_token %}
+                              <p>Are you sure you want to delete the following schedule?</p>
+
+                              <div class="row p-3">
+                                <b>Course: {{exam.course.course_code}}: {{exam.course.course_name}}</b>
+                              </div>
+                              
+                              <button type="submit" class="btn btn-info pull-left">
+                                Confirm
+                              </button>
+                            </form>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

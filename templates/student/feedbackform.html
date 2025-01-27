@@ -1,0 +1,49 @@
+{% extends "student/main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Feedback Form{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div id="content">
+        <div class="row" id="printableContent">
+            <div class="col-lg-12">
+                <section class="section">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 style="text-align:center;">Feedback Form</h2>
+                                    <!-- Print Button -->
+                                    <button onclick="printForm()" class="btn btn-primary" style="margin-bottom: 20px;">Print Form</button>
+                                    <div class="printable-form">
+                                        <form method="POST" enctype="multipart/form-data" autocomplete="off" style="margin:100px;margin-top: 0px;">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="course_title">Course Title</label>
+                                                {% render_field feedbackform.course_title class="form-control" %}
+
+                                                <label for="course_code">Course Code</label>
+                                                {% render_field feedbackform.course_code class="form-control" %}
+
+                                                <label for="specific_feedback">Specific Feedback</label>
+                                                {% render_field feedbackform.specific_feedback class="form-control" %}
+
+                                                <label for="suggestion_for_improvement">Suggestion for Improvement</label>
+                                                {% render_field feedbackform.suggestion_for_improvement class="form-control" %}
+
+                                                <label for="attachment">Attachment</label>
+                                                {% render_field feedbackform.feedback_attachment class="form-control" %}
+                                            </div>
+                                            <button type="submit" class="btn btn-success" style="border-radius:0px;">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

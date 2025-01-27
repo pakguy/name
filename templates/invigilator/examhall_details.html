@@ -1,0 +1,98 @@
+{% extends "invigilator/main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} Exam Timetable {% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div id="content"  class="printable-form">
+        <div class="row" id="printableContent">
+            <div class="col-lg-12">
+                <section class="section">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 style="text-align:center;">EXAMHALL DETAILS</h2>
+                                    <!-- Print Button -->
+                                    <button onclick="printForm()" class="btn btn-primary" style="margin-bottom: 20px;">Print Form</button>
+                                    <div>
+                                          <div class="row">
+                                            <div class="col-lg-12">
+                                      
+                                              <div class="card">
+                                                <div class="card-body">
+                                                      {% if user.is_authenticated %}
+                                                      <h1 class="card-title">Welcome {{user.username}}</h1>
+                                                      
+                                        <h3>Exam Room |{{ examroom.id }} details</h3>
+                                        <p>Room Name: {{ examroom.name }}</p>
+                                        <p>Room Name: {{ examroom.venue }}</p>
+                                        <p>Room Space: {{ examroom.no_of_seats }}</p>
+                                      
+                                        <h4>Invigilators</h4>
+                                        {% if invigilators %}
+                                        {% for invigilator in invigilators %}
+                                            <ol>
+                                                    <h2>
+                                                      <li>{{ invigilator.user.last_name }} {{ invigilator.middle_name }} {{ invigilator.user.first_name}}
+                                                      </li>  
+                                                      </h2>
+                                                {% endfor %}
+                                            </ol>
+                                        {% else %}
+                                            <p>No invigilators assigned.</p>
+                                        {% endif %}
+                                        <h3 align="center"> STUDENTS</h3>
+                                        {% if student %}
+                                                  <caption>main</caption>
+                                                <table class="table datatable">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">STUDENT NAME</th>
+                                                        <th scope="col">MATRIC NO</th>
+                                                        <th scope="col">DEPPARTMENT</th>
+                                                        <th scope="col">LEVEL</th>
+                                                        <th scope="col">Present</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for student in student %}
+                                                        <tr>
+                                                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="row">{{ forloop.counter }}</th>
+                                                                  <td>{{ student.user.first_name }}  {{ student.user.last_name }} {{ student.middle_name }}</td>
+                                                                  <td> {{ student.matric_no }}</td>
+                                                                  <td>{{ student.department }}</td>
+                                                                  <td> {{ student.level }}</td>
+                                                                  <td>
+                                                                      <input type="checkbox" name="attendance_{{ student.id }}" value="present">
+                                                                  </td>
+                                                        </tr>
+                                                        </tr>
+                                                        {% endfor %}
+                                      
+                                                    </tbody>
+                                                  </table>
+                                               
+                                          <button id="printButton" onclick="printElement('printableContent')">Print Content</button>
+                                        {% else %}
+                                            <p>No student allocated.</p>
+                                        {% endif %}
+                                        {% endif %}
+                                        
+                                                </div>
+                                              </div>
+                                      
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

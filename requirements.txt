@@ -1,0 +1,11 @@
+asgiref==3.7.2
+distlib==0.3.8
+Django==5.0.2
+django-active-link==0.1.8
+django-environ==0.11.2
+django-widget-tweaks==1.5.0
+filelock==3.13.1
+pillow==10.2.0
+platformdirs==4.2.0
+sqlparse==0.4.4
+virtualenv==20.25.0

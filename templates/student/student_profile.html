@@ -1,0 +1,47 @@
+{% extends "student/main.html" %}
+{% block content%}
+
+
+    <!-- Main Content -->
+    <div id="content" class="printable-form">
+      <div class="row" id="printableContent">
+          <div class="col-lg-12">
+              <section class="section">
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="card">
+                              <div class="card-body">
+                                  <h2 style="text-align:center;">PROFILE</h2>
+                                  <!-- Print Button -->
+                                  <button onclick="printForm()" class="btn btn-primary" style="margin-bottom: 20px;">Print</button>
+                                  <div >
+
+                                    <div class="card-body">
+                                      <a href=""class="logo d-flex align-items-center w-auto">
+                                        <h1> Username: {{ ' ' }}<strong >{{ user.username }} </strong></h1>
+                                        <img src="{{ request.user.student.profile_pic.url }}" alt="">
+                                        {% comment %} <span class="d-none d-lg-block">ACCOUNT</span> {% endcomment %}
+                                      </a>
+                                      
+                                {% comment %} <img src="{{ request.user.student.profile_pic.url}}" class="profile_image" alt="profile_image"> {% endcomment %}
+                                <h5 class="card-title">NAME: {{ ' ' }}{{ student.get_name }} {{ student.middle_name }} </h5>
+                                <h5 class="card-title">ADDRESS: {{ student.address }} </h5>
+                                <h5 class="card-title">MOBILE NO : {{student.mobile }} </h5>
+                                <h5 class="card-title">LEVEL : {{ student.level }} </h5>
+                                <h5 class="card-title">SEMESTER: {{ student.semester }} </h5>
+                                <h5 class="card-title">DEPARTMENT: {{ student.department }} </h5>
+                                <h5 class="card-title">MATRIC NO: {{ student.matric_no }} </h5>
+                                    <div class="d-flex justify-content-center py-4">
+                                </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+          </div>
+      </div>
+  </div>
+
+
+{% endblock %}

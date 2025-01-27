@@ -1,0 +1,63 @@
+{% extends "main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} Exam Timetable {% endblock %}
+
+{% block content %}
+
+
+            <!-- Main Content -->
+            <div id="content">
+              <div class="row"  id="printableContent">
+                <div class="col-lg-12">
+                
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+  
+          <div class="card">
+            <div class="card-body">
+                  
+<h2 style="text-align:center;">Add exam</h2>
+<form method="POST" enctype="multipart/form-data" autocomplete="off" style="margin:100px;margin-top: 0px;">
+    {%csrf_token%}
+    <div class="form-group">
+      <label for="course_name">Course Name</label>
+      {% render_field examform.course class="form-control" %}
+
+      <label for="course_name">TYPE</label>
+      {% render_field examform.type class="form-control" placeholder="Example: COM 223" %}
+      
+      <label for="course_name">DATE</label>
+      {% render_field examform.date class="form-control" placeholder="example : 03/06/2024" %}
+      
+      <label for="course_name">START_TIME</label>
+      {% render_field examform.start_time class="form-control" placeholder="Example: 05:00" %}
+      
+      <label for="course_name">END_ TIME</label>
+      {% render_field examform.end_time class="form-control" placeholder="Example: 06:30"%}
+      
+      <label for="table">TIMETABLE</label>
+      {% render_field examform.timetable class="form-control"%}
+
+
+
+      <label for="Venue">Venue</label>
+      {% render_field examform.venue class="form-control" placeholder="Example: 06:30"%}
+      
+
+
+    </div>
+    
+
+    <button type="submit" class="btn btn-success" style="border-radius:0px;">create schedule</button>
+  </form>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </section>
+  
+  </main><!-- End #main -->
+{% endblock content %}

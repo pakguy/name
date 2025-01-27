@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} Exam Timetable {% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div id="content">
+        <div class="row" id="printableContent">
+            <div class="col-lg-12">
+                <section class="section">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 style="text-align:center;">REPORTS</h2>
+                                    <!-- Print Button -->
+                                    <button onclick="printForm()" class="btn btn-primary" style="margin-bottom: 20px;">Print Form</button>
+                                    <div class="printable-form">
+                                        <div class="container mt-5">
+
+                                            <div class="container mt-5">
+                                                {% if feedback %}
+                                                <h2>Feedback Detail</h2>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item"><strong>Course Title:</strong> {{ feedback.course_title }}</li>
+                                                    <li class="list-group-item"><strong>Course Code:</strong> {{ feedback.course_code }}</li>
+                                                    <li class="list-group-item"><strong>Specific Feedback:</strong> {{ feedback.specific_feedback }}</li>
+                                                    <li class="list-group-item"><strong>Suggestion for Improvement:</strong> {{ feedback.suggestion_for_improvement }}</li>
+                                                    <li class="list-group-item"><strong>Feedback Attachment:</strong> <a href="{{ feedback.feedback_attachment.url }}">{{ feedback.feedback_attachment.name }}</a></li>
+                                                </ul>
+                                                {% endif %}
+                                        
+                                                {% if semic_form %}
+                                                <h2>Semic Form Detail</h2>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item"><strong>Student Name:</strong> {{ semic_form.student_name }}</li>
+                                                    <li class="list-group-item"><strong>Matric No:</strong> {{ semic_form.matric_no }}</li>
+                                                    <li class="list-group-item"><strong>Course Title:</strong> {{ semic_form.course_title }}</li>
+                                                    <li class="list-group-item"><strong>Course Code:</strong> {{ semic_form.course_code }}</li>
+                                                    <li class="list-group-item"><strong>Student Comment:</strong> {{ semic_form.student_comment }}</li>
+                                                    <li class="list-group-item"><strong>Invigilator Comment:</strong> {{ semic_form.invigilator_comment }}</li>
+                                                    <li class="list-group-item"><strong>Semic Attachment:</strong> <a href="{{ semic_form.semic_attachment.url }}">{{ semic_form.semic_attachment.name }}</a></li>
+                                                </ul>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}

@@ -1,0 +1,110 @@
+
+{% extends "main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} Exam Timetable {% endblock %}
+
+{% block content %}
+
+<!-- Main Content -->
+<div id="content" class="printable-form">
+    <div class="row" id="printableContent">
+        <div class="col-lg-12">
+
+            <section class="section">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 style="text-align:center;">TIMETABLE</h2>
+                                <!-- Print Button -->
+                                <button onclick="printForm()" class="btn btn-primary" style="margin-bottom: 20px;">Print Form</button>
+                                <div >
+                                    <div class="table-responsive">
+                                  <table class="table table-hover table-bordered" id="dev-table">
+                                    <thead class="text-info">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Course Title</th>
+                                            <th>Course Code</th>
+                                            <th>Specific Feedback</th>
+                                            <th>Suggestion for Improvement</th>
+                                            <th>Feedback Attachment</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                          {% for feedback in feedbacks %}
+                                          <tr>
+                                              <td>{{ forloop.counter }}</td>
+                                              <td>{{ feedback.course_title }}</td>
+                                              <td>{{ feedback.course_code }}</td>
+                                              <td>{{ feedback.specific_feedback }}</td>
+                                              <td>{{ feedback.suggestion_for_improvement }}</td>
+                                              <td><a href="{{ feedback.feedback_attachment.url }}">{{ feedback.feedback_attachment.name }}</a></td>
+                                              <td><a href="{% url 'view_feedback_detail' feedback.id %}">View Details</a></td>
+                                          </tr>
+                                          {% endfor %}
+                                  </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div id="content" class="printable-form">
+    <div class="row" id="printableContent">
+        <div class="col-lg-12">
+
+            <section class="section">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 style="text-align:center;">TIMETABLE</h2>
+                                <!-- Print Button -->
+                                <button onclick="printForm()" class="btn btn-primary" style="margin-bottom: 20px;">Print Form</button>
+                                <div >
+                                    <div class="table-responsive">
+                                  <table class="table table-hover table-bordered" id="dev-table">
+                                    <thead class="text-info">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Student Name</th>
+                                            <th>Matric No</th>
+                                            <th>Course Title</th>
+                                            <th>Course Code</th>
+                                            <th>Student Comment</th>
+                                            <th>Invigilator Comment</th>
+                                            <th>Semic Attachment</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        {% for semic in semic_forms %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ semic.student_name }}</td>
+                                            <td>{{ semic.matric_no }}</td>
+                                            <td>{{ semic.course_title }}</td>
+                                            <td>{{ semic.course_code }}</td>
+                                            <td>{{ semic.student_comment }}</td>
+                                            <td>{{ semic.invigilator_comment }}</td>
+                                            <td><a href="{{ semic.semic_attachment.url }}">{{ semic.semic_attachment.name }}</a></td>
+                                            <td><a href="{% url 'view_semic_detail' semic.id %}">View Details</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                  </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    {% endblock content %}
+    
